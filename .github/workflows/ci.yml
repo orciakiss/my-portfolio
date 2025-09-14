@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+ 
+jobs:
+  
+  build:
+   
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v4
+      - name: build image
+        run: docker build -t orcia/portfolio .
+
+      - name: Push image
+        run: |
+          docker login -u orcia -p ${secrets.REGISTRY_PASS}
+          docker push orcia/portfolio
