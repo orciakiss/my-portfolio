@@ -20,6 +20,6 @@ jobs:
       - name: Install pytest
         run: pip install pytest
       - name: unit test
-        run: pytest
+        run: pytest app.py
       - name: Build image
         run: docker build -t kserge2001/portcicd .
